@@ -1,7 +1,6 @@
 package com.example.application;
 
 import java.math.BigInteger;
-
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -64,9 +63,10 @@ public class Hash extends AppLayout {
         VerticalLayout hashLayout = new VerticalLayout();
         hashLayout.setAlignItems(Alignment.START);
 
-        Label titleLabel = new Label("Enter text:");
+        Label titleLabel = new Label("Please Enter Text");
 
         titleLabel.getStyle().set("margin-right", "30px");
+        titleLabel.getStyle().set("font-size", "20px");
 
         com.vaadin.flow.component.textfield.TextField textField = new com.vaadin.flow.component.textfield.TextField();
         textField.setPlaceholder("Enter text to hash");
@@ -74,11 +74,15 @@ public class Hash extends AppLayout {
 
        
         com.vaadin.flow.component.button.Button generateButton = new com.vaadin.flow.component.button.Button("Generate Hash");
+        generateButton.getStyle().set("font-size", "16px"); // Set font size to 16px
+        generateButton.getStyle().set("padding", "10px 20px"); // Set padding to make the button visually larger
+        generateButton.setWidth("auto");
         Label hashLabel = new Label();
         generateButton.addClickListener(e -> {
             String inputText = textField.getValue();
             String hashedText = generateSHA256Hash(inputText);
             hashLabel.setText("Hash: " + hashedText);
+            hashLabel.getStyle().set("font-size", "20px");
         });
 
         hashLayout.add(titleLabel, textField, generateButton, hashLabel);
