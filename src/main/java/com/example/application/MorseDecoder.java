@@ -98,18 +98,13 @@ public class MorseDecoder extends AppLayout {
 
         // Split Morse code by space to get individual Morse characters
         String[] morseChars = morseCode.trim().split(" ");
-
-        // Iterate through Morse characters
         for (String character : morseChars) {
-            // Check if Morse character is not empty
             if (!character.isEmpty()) {
-                // Look up character for Morse code
                 Character decodedChar = morseMap.get(character);
                 if (decodedChar != null) {
                     decodedText.append(decodedChar);
                 }
             } else {
-                // If Morse character is empty (indicates space between words), add space
                 decodedText.append(" ");
             }
         }
@@ -123,27 +118,18 @@ private void morseDecodingUI() {
     TextField morseTextField = new TextField("Morse Code");
     morseTextField.setPlaceholder("Enter Morse code");
     morseTextField.setWidth("300px");
-
-    // Create text field to display the decoded text
     TextField decodedTextField = new TextField("Decoded Text");
-    decodedTextField.setReadOnly(true); // Set as read-only to prevent user input
-
-    // Create button to trigger decoding process
+    decodedTextField.setReadOnly(true);
     Button decodeButton = new Button("Decode");
     decodeButton.addClickListener(e -> {
-        // Retrieve the Morse code input
         String morseCode = morseTextField.getValue();
-        // Decode the Morse code
         String decodedText = decodeMorse(morseCode);
-        // Set the decoded text to the appropriate text field
         decodedTextField.setValue(decodedText);
     });
 
     // Add components to the layout
     VerticalLayout layout = new VerticalLayout();
-    layout.add(morseTextField, decodeButton, decodedTextField); // Add text field, button, and decoded text field to the layout
-
-    // Set the layout as the content of the AppLayout
+    layout.add(morseTextField, decodeButton, decodedTextField);
     setContent(layout);
 }
 }
