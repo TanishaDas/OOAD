@@ -12,6 +12,7 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.theme.lumo.LumoUtility;
 import com.vaadin.flow.component.html.Paragraph;
+import com.vaadin.flow.component.html.Image;
 
 @PageTitle("Encodify Home Page")
 @Route(value = "")
@@ -30,8 +31,11 @@ public class AppLayoutNavbarPlacementSide extends AppLayout {
                         "and offers various algorithms such as Caesar cipher, Hashing, Morse code, and more.");
         description.getStyle().set("padding", "2em");
 
+        Image image = new Image("images/myimage.png", "My Alt Image");
+
+
         HorizontalLayout horizontalLayout = new HorizontalLayout();
-        horizontalLayout.add(description);
+        horizontalLayout.add(description,image);
         setContent(horizontalLayout);
 
         SideNav nav = getSideNav();

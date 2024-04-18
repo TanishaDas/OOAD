@@ -2,11 +2,14 @@ package com.example.application;
 
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.Scroller;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.sidenav.SideNav;
 import com.vaadin.flow.component.sidenav.SideNavItem;
+import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.theme.lumo.LumoUtility;
@@ -34,6 +37,9 @@ public class MorseDecoder extends AppLayout {
         addToNavbar(toggle, title);
 
         setPrimarySection(Section.DRAWER);
+
+        // Initialize UI components
+        morseDecodingUI();
     }
 
     private SideNav getSideNav() {
@@ -111,25 +117,25 @@ public class MorseDecoder extends AppLayout {
 
         return decodedText.toString();
     }
-}
 
-private void morseDecodingUI() {
-    // Create text field for Morse code input
-    TextField morseTextField = new TextField("Morse Code");
-    morseTextField.setPlaceholder("Enter Morse code");
-    morseTextField.setWidth("300px");
-    TextField decodedTextField = new TextField("Decoded Text");
-    decodedTextField.setReadOnly(true);
-    Button decodeButton = new Button("Decode");
-    decodeButton.addClickListener(e -> {
-        String morseCode = morseTextField.getValue();
-        String decodedText = decodeMorse(morseCode);
-        decodedTextField.setValue(decodedText);
-    });
+    // Method to create Morse decoding UI
+    private void morseDecodingUI() {
+        // Create text field for Morse code input
+        TextField morseTextField = new TextField("Morse Code");
+        morseTextField.setPlaceholder("Enter Morse code");
+        morseTextField.setWidth("300px");
+        TextField decodedTextField = new TextField("Decoded Text");
+        decodedTextField.setReadOnly(true);
+        Button decodeButton = new Button("Decode");
+        decodeButton.addClickListener(e -> {
+            String morseCode = morseTextField.getValue();
+            String decodedText = decodeMorse(morseCode);
+            decodedTextField.setValue(decodedText);
+        });
 
-    // Add components to the layout
-    VerticalLayout layout = new VerticalLayout();
-    layout.add(morseTextField, decodeButton, decodedTextField);
-    setContent(layout);
-}
+        // Add components to the layout
+        VerticalLayout layout = new VerticalLayout();
+        layout.add(morseTextField, decodeButton, decodedTextField);
+        setContent(layout);
+    }
 }
